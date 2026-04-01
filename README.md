@@ -27,3 +27,4 @@ python main.py
 ## Example Output
 (22, 'OPEN', 'SSH', 'SSH-2.0-OpenSSH')
 (80, 'OPEN', 'HTTP', 'HTTP/1.1 200 OK')
+
