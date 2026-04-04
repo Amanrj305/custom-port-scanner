@@ -1,5 +1,6 @@
 import socket
 import time
+import ssl 
 
 def scan_port(ip, port, timeout=1, retries=3):
     attempt = 0
@@ -8,6 +9,10 @@ def scan_port(ip, port, timeout=1, retries=3):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.settimeout(timeout)
+
+            if port == 443:
+                context = ssl.create_default_context()
+                s = context.wrap_socket(s, server_hostname=ip)
 
             res = s.connect_ex((ip, port))
             s.close()
