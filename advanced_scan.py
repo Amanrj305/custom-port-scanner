@@ -16,8 +16,11 @@ def grab_banner(ip, port):
 
         s.connect((ip, port))
 
-        if port == 80 or port == 443:
+        if port == 80:
             s.send(b"GET / HTTP/1.0\r\n\r\n")
+
+        elif port == 443:
+            s.send(b"GET / HTTP/1.1\r\nHost: " + ip.encode() + b"\r\n\r\n")
 
         banner = ""
 
